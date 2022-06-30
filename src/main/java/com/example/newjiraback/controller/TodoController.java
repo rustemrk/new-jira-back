@@ -1,0 +1,43 @@
+package com.example.newjiraback.controller;
+
+import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.service.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/todo")
+public class TodoController {
+
+    @Autowired
+    private TodoService todoService;
+
+    @PostMapping("/save")
+    public Todo save(@RequestBody Todo todo) {
+        todoService.save(todo);
+        return todo;
+    }
+
+    @PutMapping("/update")
+    public Todo update(@RequestBody Todo todo) {
+        todoService.save(todo);
+        return todo;
+    }
+
+    @GetMapping("/get/{id}")
+    public Todo get(@PathVariable int id) {
+        return todoService.get(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id) {
+        todoService.delete(id);
+    }
+
+    @GetMapping("/list")
+    public List<Todo> list() {
+        return todoService.list();
+    }
+}

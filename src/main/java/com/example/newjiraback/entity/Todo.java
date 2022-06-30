@@ -3,8 +3,8 @@ package com.example.newjiraback.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "task")
-public class Task {
+@Table(name = "todo")
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +17,10 @@ public class Task {
     @Column(name = "description")
     private String description;
 
-    public Task() {
+    public Todo() {
     }
 
-    public Task(String title, String description) {
+    public Todo(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -51,7 +51,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "Todo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
