@@ -15,14 +15,14 @@ public class TodoController {
     private TodoService todoService;
 
     @PostMapping("/save")
-    public Todo save(@RequestBody Todo todo) {
-        todoService.save(todo);
+    public Todo create(@RequestBody Todo todo) {
+        todoService.create(todo);
         return todo;
     }
 
     @PutMapping("/update")
     public Todo update(@RequestBody Todo todo) {
-        todoService.save(todo);
+        todoService.update(todo);
         return todo;
     }
 
