@@ -14,7 +14,7 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @PostMapping("/save")
+    @PostMapping("/create")
     public Todo create(@RequestBody Todo todo) {
         todoService.create(todo);
         return todo;
