@@ -7,6 +7,7 @@ import java.util.List;
 public interface TodoService {
     public void create(Todo todo);
     public void update(Todo todo);
+    public void close(long id);
     public void delete(long id);
     public Todo get(long id);
     public List<Todo> list();

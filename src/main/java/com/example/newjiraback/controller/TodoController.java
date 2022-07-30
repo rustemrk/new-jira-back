@@ -3,6 +3,7 @@ package com.example.newjiraback.controller;
 import com.example.newjiraback.entity.Todo;
 import com.example.newjiraback.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,14 +27,21 @@ public class TodoController {
         return todo;
     }
 
+    @PutMapping("/close/{id}")
+    public HttpStatus close(@PathVariable long id) {
+        todoService.close(id);
+        return HttpStatus.OK;
+    }
+
     @GetMapping("/get/{id}")
     public Todo get(@PathVariable long id) {
         return todoService.get(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public HttpStatus delete(@PathVariable long id) {
         todoService.delete(id);
+        return HttpStatus.OK;
     }
 
     @GetMapping("/list")

@@ -10,14 +10,14 @@
                  stripComments="true"
                  splitStatements="true"
                  relativeToChangelogFile="true"
-                 path="03-alter-table-todo-add-delete-date.sql"/>
+                 path="02-alter-table-todo-add-update-date.sql"/>
 
         <rollback>
             <sqlFile endDelimiter="\nGO"
                      stripComments="true"
                      splitStatements="true"
                      relativeToChangelogFile="true"
-                     path="03-alter-table-todo-drop-delete-date.sql"/>
+                     path="02-alter-table-todo-drop-update-date.sql"/>
         </rollback>
     </changeSet>
 

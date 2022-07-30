@@ -1,7 +1,7 @@
 package com.example.newjiraback.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "todo")
@@ -19,13 +19,16 @@ public class Todo {
     private String description;
 
     @Column(name = "create_date")
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @Column(name = "update_date")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
-    @Column(name = "delete_date")
-    private Date deleteDate;
+    @Column(name = "close_date")
+    private LocalDateTime closeDate;
+
+    @Column(name = "closed")
+    private Boolean closed;
 
     public Todo() {
     }
@@ -59,28 +62,36 @@ public class Todo {
         this.description = description;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 
-    public Date getDeleteDate() {
-        return deleteDate;
+    public LocalDateTime getCloseDate() {
+        return closeDate;
     }
 
-    public void setDeleteDate(Date deleteDate) {
-        this.deleteDate = deleteDate;
+    public void setCloseDate(LocalDateTime closeDate) {
+        this.closeDate = closeDate;
+    }
+
+    public Boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
     }
 
     @Override
@@ -91,7 +102,8 @@ public class Todo {
                 ", description='" + description + '\'' +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
-                ", deleteDate=" + deleteDate +
+                ", closeDate=" + closeDate +
+                ", closed=" + closed +
                 '}';
     }
 }

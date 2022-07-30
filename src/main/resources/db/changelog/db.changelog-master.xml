@@ -13,14 +13,19 @@
         <tagDatabase tag="db_init"/>
     </changeSet>
 
-    <include file="v1/db.changelog-v1.xml" relativeToChangelogFile="true"/>
+    <include file="2022/07/v1/db.changelog-v1.xml" relativeToChangelogFile="true"/>
     <changeSet id="2" author="rustem">
         <tagDatabase tag="v1"/>
     </changeSet>
 
-    <include file="v2/db.changelog-v2.xml" relativeToChangelogFile="true"/>
+    <include file="2022/07/v2/db.changelog-v2.xml" relativeToChangelogFile="true"/>
     <changeSet id="7" author="rustem">
         <tagDatabase tag="v2"/>
+    </changeSet>
+
+    <include file="2022/07/v4/db.changelog-v4.xml" relativeToChangelogFile="true"/>
+    <changeSet id="11" author="rustem">
+        <tagDatabase tag="v4"/>
     </changeSet>
     
 </databaseChangeLog>

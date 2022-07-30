@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="10" author="rustem">
+        <sqlFile endDelimiter="\nGO"
+                 stripComments="true"
+                 splitStatements="true"
+                 relativeToChangelogFile="true"
+                 path="01-add-column-closed.sql"/>
+
+        <rollback>
+            <sqlFile endDelimiter="\nGO"
+                     stripComments="true"
+                     splitStatements="true"
+                     relativeToChangelogFile="true"
+                     path="01-drop-column-closed.sql"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
