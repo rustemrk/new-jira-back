@@ -27,5 +27,10 @@
     <changeSet id="11" author="rustem">
         <tagDatabase tag="v4"/>
     </changeSet>
+
+    <include file="2022/07/v5/db.changelog-v5.xml" relativeToChangelogFile="true"/>
+    <changeSet id="14" author="rustem">
+        <tagDatabase tag="v5"/>
+    </changeSet>
     
 </databaseChangeLog>

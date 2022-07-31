@@ -35,7 +35,7 @@ public class TodoServiceImpl implements TodoService {
         if (optionalTodo.isPresent()) {
             Todo todo = optionalTodo.get();
 
-            if (!todo.getClosed()) {
+            if (!todo.isClosed()) {
                 todo.setUpdateDate(dateNow());
                 todo.setCloseDate(dateNow());
                 todo.setClosed(true);

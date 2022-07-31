@@ -30,6 +30,9 @@ public class Todo {
     @Column(name = "closed")
     private Boolean closed;
 
+    @Column(name = "type")
+    private int type;
+
     public Todo() {
     }
 
@@ -94,6 +97,18 @@ public class Todo {
         this.closed = closed;
     }
 
+    public Boolean isClosed() {
+        return closed;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
@@ -104,6 +119,7 @@ public class Todo {
                 ", updateDate=" + updateDate +
                 ", closeDate=" + closeDate +
                 ", closed=" + closed +
+                ", type=" + type +
                 '}';
     }
 }
