@@ -1,22 +1,40 @@
 package com.example.newjiraback.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "todo")
 public class Todo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo")
+    @SequenceGenerator(name = "seq_todo", allocationSize = 1, initialValue = 1000)
+    @Column(name = "id", nullable = false, unique = true)
+    private Long id;
 
-    @Column(name = "title")
+    @NotBlank
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "description")
     private String description;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "type", nullable = false)
+    private TodoType type;
 
     @Column(name = "create_date")
     private LocalDateTime createDate;
@@ -27,99 +45,7 @@ public class Todo {
     @Column(name = "close_date")
     private LocalDateTime closeDate;
 
-    @Column(name = "closed")
-    private Boolean closed;
+    @Column(name = "is_closed")
+    private Boolean isClosed;
 
-    @Column(name = "type")
-    private int type;
-
-    public Todo() {
-    }
-
-    public Todo(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public LocalDateTime getCloseDate() {
-        return closeDate;
-    }
-
-    public void setCloseDate(LocalDateTime closeDate) {
-        this.closeDate = closeDate;
-    }
-
-    public Boolean getClosed() {
-        return closed;
-    }
-
-    public void setClosed(Boolean closed) {
-        this.closed = closed;
-    }
-
-    public Boolean isClosed() {
-        return closed;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Todo{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                ", closeDate=" + closeDate +
-                ", closed=" + closed +
-                ", type=" + type +
-                '}';
-    }
 }

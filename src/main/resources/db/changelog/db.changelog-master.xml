@@ -4,33 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    
-    <preConditions>
-        <dbms type="mysql"/>
-    </preConditions>
-    
-    <changeSet id="1" author="rustem">
-        <tagDatabase tag="db_init"/>
-    </changeSet>
 
-    <include file="2022/07/v1/db.changelog-v1.xml" relativeToChangelogFile="true"/>
-    <changeSet id="2" author="rustem">
-        <tagDatabase tag="v1"/>
-    </changeSet>
+    <include file="2022/08/cumulative.xml" relativeToChangelogFile="true"/>
 
-    <include file="2022/07/v2/db.changelog-v2.xml" relativeToChangelogFile="true"/>
-    <changeSet id="7" author="rustem">
-        <tagDatabase tag="v2"/>
-    </changeSet>
-
-    <include file="2022/07/v4/db.changelog-v4.xml" relativeToChangelogFile="true"/>
-    <changeSet id="11" author="rustem">
-        <tagDatabase tag="v4"/>
-    </changeSet>
-
-    <include file="2022/07/v5/db.changelog-v5.xml" relativeToChangelogFile="true"/>
-    <changeSet id="14" author="rustem">
-        <tagDatabase tag="v5"/>
-    </changeSet>
-    
 </databaseChangeLog>

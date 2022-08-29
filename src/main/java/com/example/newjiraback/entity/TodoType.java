@@ -1,42 +1,35 @@
 package com.example.newjiraback.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "todo_type")
 public class TodoType {
 
-    public static final int TASK = 1;
-    public static final int BUG = 2;
+    public static final Long TASK = 1L;
+    public static final Long BUG = 2L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo_type")
+    @SequenceGenerator(name = "seq_todo_type", allocationSize = 1, initialValue = 1000)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "name")
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
 
-    public TodoType() {
-    }
+    @Column(name = "is_system")
+    private Boolean isSystem;
 
-    public TodoType(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

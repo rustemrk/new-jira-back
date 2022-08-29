@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="createTableTodoType" author="rustem">
+        <createTable tableName="todo_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_todo_type"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_system" type="boolean"/>
+        </createTable>
+
+        <createSequence dataType="bigint"
+                        schemaName="public"
+                        incrementBy="1"
+                        startValue="1000"
+                        sequenceName="seq_todo_type"/>
+    </changeSet>
+
+    <changeSet id="createTableTodo" author="rustem">
+        <createTable tableName="todo">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="pk_todo"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="type" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="timestamp"/>
+            <column name="update_date" type="timestamp"/>
+            <column name="close_date" type="timestamp"/>
+            <column name="is_closed" type="boolean"/>
+        </createTable>
+
+        <createSequence dataType="bigint"
+                        schemaName="public"
+                        incrementBy="1"
+                        startValue="1000"
+                        sequenceName="seq_todo"/>
+
+        <addForeignKeyConstraint baseTableName="todo"
+                                 baseColumnNames="type"
+                                 constraintName="fk_todo_todo_type"
+                                 referencedTableName="todo_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
