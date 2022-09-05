@@ -17,7 +17,6 @@ public class TodoService {
 
     public Todo create(Todo todo) {
         todo.setCreateDate(dateNow());
-        todo.setIsClosed(false);
         return todoRepository.save(todo);
     }
 
@@ -27,18 +26,12 @@ public class TodoService {
     }
 
     public void close(Long id) {
-//        Todo todo = todoService.get(id);
-//        if (todo != null && !todo.getClosed()) {
-//            todo.setUpdateDate(dateNow());
-//            todo.setCloseDate(dateNow());
-//            todo.setClosed(true);
-//            todoRepository.save(todo);
-//        }
+        boolean isClosed = todoRepository.isClosed(id);
+        if (!isClosed) todoRepository.close(id, dateNow());
     }
 
     @SneakyThrows
     public Todo get(Long id) {
-        return todoRepository.findById(id)
-                .orElseThrow(TodoNotFoundException::new);
+        return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
     }
 }

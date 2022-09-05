@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -37,15 +37,12 @@ public class Todo {
     private TodoType type;
 
     @Column(name = "create_date")
-    private LocalDateTime createDate;
+    private OffsetDateTime createDate;
 
     @Column(name = "update_date")
-    private LocalDateTime updateDate;
+    private OffsetDateTime updateDate;
 
     @Column(name = "close_date")
-    private LocalDateTime closeDate;
-
-    @Column(name = "is_closed")
-    private Boolean isClosed;
+    private OffsetDateTime closeDate;
 
 }

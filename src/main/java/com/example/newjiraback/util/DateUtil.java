@@ -1,10 +1,10 @@
 package com.example.newjiraback.util;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class DateUtil {
 
-    public static LocalDateTime dateNow() {
-        return LocalDateTime.now();
+    public static OffsetDateTime dateNow() {
+        return OffsetDateTime.now();
     }
 }
