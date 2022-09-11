@@ -25,13 +25,13 @@
 
     <changeSet id="updateTableTodo" author="rustem">
         <addColumn tableName="todo">
-            <column name="todo_status" type="bigint">
+            <column name="status" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </addColumn>
 
         <addForeignKeyConstraint baseTableName="todo"
-                                 baseColumnNames="todo_status"
+                                 baseColumnNames="status"
                                  constraintName="fk_todo_todo_status"
                                  referencedTableName="todo_status"
                                  referencedColumnNames="id"/>

@@ -5,11 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="loadTodoTypeData" author="rustem" context="test, prod" runOnChange="true">
+    <changeSet id="loadTodoStatusData" author="rustem" context="test, prod" runOnChange="true">
         <loadUpdateData
-                file="db/data/test/2022/08/29-todo_type.csv"
+                file="db/data/test/2022/09/08-todo_status.csv"
                 primaryKey="id"
-                tableName="todo_type">
+                tableName="todo_status">
         </loadUpdateData>
     </changeSet>
 

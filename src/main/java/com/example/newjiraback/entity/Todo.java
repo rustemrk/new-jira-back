@@ -32,7 +32,7 @@ public class Todo {
     private String description;
 
     @NotNull
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "type", nullable = false)
     private TodoType type;
 
@@ -44,5 +44,10 @@ public class Todo {
 
     @Column(name = "close_date")
     private OffsetDateTime closeDate;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "status", nullable = false)
+    private TodoStatus status;
 
 }

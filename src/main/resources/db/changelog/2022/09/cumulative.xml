@@ -6,5 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="04-01-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="08-01-initTodoStatusData.xml" relativeToChangelogFile="true"/>
+    <include file="11-01-changelog.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

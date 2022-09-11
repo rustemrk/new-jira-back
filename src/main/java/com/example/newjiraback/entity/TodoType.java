@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -31,5 +32,8 @@ public class TodoType {
 
     @Column(name = "is_system")
     private Boolean isSystem;
+
+    @Column(name = "create_date")
+    private OffsetDateTime createDate;
 
 }

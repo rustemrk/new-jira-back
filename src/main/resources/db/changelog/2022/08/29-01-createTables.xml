@@ -19,7 +19,7 @@
         <createSequence dataType="bigint"
                         schemaName="public"
                         incrementBy="1"
-                        startValue="1000"
+                        startValue="10000"
                         sequenceName="seq_todo_type"/>
     </changeSet>
 
@@ -43,7 +43,7 @@
         <createSequence dataType="bigint"
                         schemaName="public"
                         incrementBy="1"
-                        startValue="1000"
+                        startValue="10000"
                         sequenceName="seq_todo"/>
 
         <addForeignKeyConstraint baseTableName="todo"

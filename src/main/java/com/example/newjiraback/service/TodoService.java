@@ -20,6 +20,11 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
+    @SneakyThrows
+    public Todo get(Long id) {
+        return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
+    }
+
     public Todo update(Todo todo) {
         todo.setUpdateDate(dateNow());
         return todoRepository.save(todo);
@@ -30,8 +35,7 @@ public class TodoService {
         if (!isClosed) todoRepository.close(id, dateNow());
     }
 
-    @SneakyThrows
-    public Todo get(Long id) {
-        return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
+    public void delete(Long id) {
+        todoRepository.deleteById(id);
     }
 }

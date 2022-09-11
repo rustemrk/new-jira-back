@@ -36,4 +36,10 @@ public class TodoController {
     public Todo get(@PathVariable Long id) {
         return todoService.get(id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public HttpStatus delete(@PathVariable Long id) {
+        todoService.delete(id);
+        return HttpStatus.OK;
+    }
 }
