@@ -14,8 +14,12 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "todo_type")
+@Table(name = "todo_status")
 public class TodoStatus {
+
+    public static final long TODO = 1L;
+    public static final long INPROGRESS = 2L;
+    public static final long DONE = 3L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo_status")

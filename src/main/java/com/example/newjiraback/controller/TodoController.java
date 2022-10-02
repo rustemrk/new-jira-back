@@ -1,5 +1,6 @@
 package com.example.newjiraback.controller;
 
+import com.example.newjiraback.dto.TodoDTO;
 import com.example.newjiraback.entity.Todo;
 import com.example.newjiraback.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,11 @@ public class TodoController {
     private TodoService todoService;
 
     @PutMapping("/save")
-    public Todo save(@Valid @RequestBody Todo todo) {
-        if (isEmpty(todo.getId())) {
-            return todoService.create(todo);
+    public TodoDTO save(@Valid @RequestBody TodoDTO todoDTO) {
+        if (isEmpty(todoDTO.getId())) {
+            return todoService.create(todoDTO);
         } else {
-            return todoService.update(todo);
+            return todoService.update(todoDTO);
         }
     }
 

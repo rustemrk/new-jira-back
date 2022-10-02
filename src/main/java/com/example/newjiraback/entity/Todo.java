@@ -45,7 +45,6 @@ public class Todo {
     @Column(name = "close_date")
     private OffsetDateTime closeDate;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "status", nullable = false)
     private TodoStatus status;

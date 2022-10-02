@@ -31,7 +31,7 @@
             <column name="title" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(255)"/>
+            <column name="description" type="varchar(2000)"/>
             <column name="type" type="bigint">
                 <constraints nullable="false"/>
             </column>

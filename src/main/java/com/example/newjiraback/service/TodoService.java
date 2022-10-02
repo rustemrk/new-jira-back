@@ -1,6 +1,10 @@
 package com.example.newjiraback.service;
 
+import com.example.newjiraback.dto.TodoDTO;
+import com.example.newjiraback.dto.mapper.TodoMapper;
 import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.entity.TodoStatus;
+import com.example.newjiraback.entity.TodoType;
 import com.example.newjiraback.exception.TodoNotFoundException;
 import com.example.newjiraback.repository.TodoRepository;
 import lombok.SneakyThrows;
@@ -15,9 +19,26 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    public Todo create(Todo todo) {
+    @Autowired
+    private TodoStatusService todoStatusService;
+
+    @Autowired
+    private TodoTypeService todoTypeService;
+
+    public TodoDTO create(TodoDTO todoDTO) {
+        String title = todoDTO.getTitle();
+        String description = todoDTO.getDescription();
+        TodoStatus status = todoStatusService.get(TodoStatus.TODO);
+        TodoType type = todoTypeService.get(todoDTO.getTypeId());
+
+        Todo todo = new Todo();
+        todo.setTitle(title);
+        todo.setDescription(description);
+        todo.setType(type);
+        todo.setStatus(status);
         todo.setCreateDate(dateNow());
-        return todoRepository.save(todo);
+
+        return TodoMapper.INSTANCE.toDTO(todoRepository.save(todo));
     }
 
     @SneakyThrows
@@ -25,9 +46,10 @@ public class TodoService {
         return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
     }
 
-    public Todo update(Todo todo) {
+    public TodoDTO update(TodoDTO todoDTO) {
+        Todo todo = TodoMapper.INSTANCE.toEntity(todoDTO);
         todo.setUpdateDate(dateNow());
-        return todoRepository.save(todo);
+        return TodoMapper.INSTANCE.toDTO(todoRepository.save(todo));
     }
 
     public void close(Long id) {
