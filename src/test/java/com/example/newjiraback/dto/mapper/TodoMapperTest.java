@@ -1,7 +1,7 @@
 package com.example.newjiraback.dto.mapper;
 
 import com.example.newjiraback.dto.TodoDTO;
-import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.model.Todo;
 import com.example.newjiraback.service.TodoStatusService;
 import com.example.newjiraback.service.TodoTypeService;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ class TodoMapperTest {
         Todo todo = createTodo();
         TodoDTO todoDTO = TodoMapper.INSTANCE.toDTO(todo);
         System.out.println(todoDTO);
-        assertEquals(todoDTO.getTypeId() , todo.getType().getId());
+        assertEquals(todoDTO.getTypeId(), todo.getType().getId());
     }
 
     @Test

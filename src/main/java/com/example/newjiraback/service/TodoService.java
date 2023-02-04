@@ -2,10 +2,10 @@ package com.example.newjiraback.service;
 
 import com.example.newjiraback.dto.TodoDTO;
 import com.example.newjiraback.dto.mapper.TodoMapper;
-import com.example.newjiraback.entity.Todo;
-import com.example.newjiraback.entity.TodoStatus;
-import com.example.newjiraback.entity.TodoType;
 import com.example.newjiraback.exception.TodoNotFoundException;
+import com.example.newjiraback.model.Todo;
+import com.example.newjiraback.model.TodoStatus;
+import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.newjiraback.repository;
 
-import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.model.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

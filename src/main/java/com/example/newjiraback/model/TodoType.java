@@ -1,4 +1,4 @@
-package com.example.newjiraback.entity;
+package com.example.newjiraback.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,16 +14,15 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "todo_status")
-public class TodoStatus {
+@Table(name = "todo_type")
+public class TodoType {
 
-    public static final long TO_DO = 1L;
-    public static final long IN_PROGRESS = 2L;
-    public static final long DONE = 3L;
+    public static final Long TASK = 1L;
+    public static final Long BUG = 2L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo_status")
-    @SequenceGenerator(name = "seq_todo_status", allocationSize = 1, initialValue = 1000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo_type")
+    @SequenceGenerator(name = "seq_todo_type", allocationSize = 1, initialValue = 1000)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
@@ -36,4 +35,5 @@ public class TodoStatus {
 
     @Column(name = "create_date")
     private OffsetDateTime createDate;
+
 }

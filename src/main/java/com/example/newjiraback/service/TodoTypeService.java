@@ -1,6 +1,6 @@
 package com.example.newjiraback.service;
 
-import com.example.newjiraback.entity.TodoType;
+import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoTypeRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

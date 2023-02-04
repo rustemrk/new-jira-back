@@ -1,7 +1,7 @@
 package com.example.newjiraback.controller;
 
 import com.example.newjiraback.dto.TodoDTO;
-import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.model.Todo;
 import com.example.newjiraback.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

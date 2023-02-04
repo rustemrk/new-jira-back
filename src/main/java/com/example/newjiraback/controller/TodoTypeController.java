@@ -1,6 +1,6 @@
 package com.example.newjiraback.controller;
 
-import com.example.newjiraback.entity.TodoType;
+import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.service.TodoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

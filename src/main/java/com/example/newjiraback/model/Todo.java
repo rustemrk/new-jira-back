@@ -1,4 +1,4 @@
-package com.example.newjiraback.entity;
+package com.example.newjiraback.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

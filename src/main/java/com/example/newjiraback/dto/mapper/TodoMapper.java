@@ -1,7 +1,7 @@
 package com.example.newjiraback.dto.mapper;
 
 import com.example.newjiraback.dto.TodoDTO;
-import com.example.newjiraback.entity.Todo;
+import com.example.newjiraback.model.Todo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

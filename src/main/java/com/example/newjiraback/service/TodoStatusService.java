@@ -1,6 +1,6 @@
 package com.example.newjiraback.service;
 
-import com.example.newjiraback.entity.TodoStatus;
+import com.example.newjiraback.model.TodoStatus;
 import com.example.newjiraback.repository.TodoStatusRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
