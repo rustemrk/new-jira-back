@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 @Table(name = "todo_status")
 public class TodoStatus {
 
-    public static final long TODO = 1L;
-    public static final long INPROGRESS = 2L;
+    public static final long TO_DO = 1L;
+    public static final long IN_PROGRESS = 2L;
     public static final long DONE = 3L;
 
     @Id

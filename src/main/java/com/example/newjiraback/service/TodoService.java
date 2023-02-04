@@ -28,7 +28,7 @@ public class TodoService {
     public TodoDTO create(TodoDTO todoDTO) {
         String title = todoDTO.getTitle();
         String description = todoDTO.getDescription();
-        TodoStatus status = todoStatusService.get(TodoStatus.TODO);
+        TodoStatus status = todoStatusService.get(TodoStatus.TO_DO);
         TodoType type = todoTypeService.get(todoDTO.getTypeId());
 
         Todo todo = new Todo();

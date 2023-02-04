@@ -29,6 +29,6 @@ public class TodoStatusService {
     }
 
     public void delete(Long id) {
-        todoStatusRepository.deleteById(id);
+        todoStatusRepository.delete(id);
     }
 }
