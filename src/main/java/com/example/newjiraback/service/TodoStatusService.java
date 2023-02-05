@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.example.newjiraback.util.DateUtil.dateNow;
 
 @Service
@@ -30,5 +32,9 @@ public class TodoStatusService {
 
     public void delete(Long id) {
         todoStatusRepository.delete(id);
+    }
+
+    public List<TodoStatus> list() {
+        return todoStatusRepository.findAll();
     }
 }

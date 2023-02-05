@@ -8,30 +8,28 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.springframework.util.ObjectUtils.isEmpty;
-
 @RestController
-@RequestMapping("/todo-type")
+@RequestMapping("/api/todo-type")
 public class TodoTypeController {
-
     @Autowired
     private TodoTypeService todoTypeService;
 
-    @PutMapping("/save")
-    public TodoType save(@Valid @RequestBody TodoType todoType) {
-        if (isEmpty(todoType.getId())) {
-            return todoTypeService.create(todoType);
-        } else {
-            return todoTypeService.update(todoType);
-        }
+    @PostMapping
+    public TodoType create(@Valid @RequestBody TodoType todoType) {
+        return todoTypeService.create(todoType);
     }
 
-    @GetMapping("/get/{id}")
+    @PutMapping
+    public TodoType save(@Valid @RequestBody TodoType todoType) {
+        return todoTypeService.update(todoType);
+    }
+
+    @GetMapping("/{id}")
     public TodoType get(@PathVariable Long id) {
         return todoTypeService.get(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public HttpStatus delete(@PathVariable Long id) {
         todoTypeService.delete(id);
         return HttpStatus.OK;

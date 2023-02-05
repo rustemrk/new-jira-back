@@ -15,28 +15,24 @@ import static com.example.newjiraback.util.DateUtil.dateNow;
 
 @Service
 public class TodoService {
-
     @Autowired
     private TodoRepository todoRepository;
-
     @Autowired
     private TodoStatusService todoStatusService;
-
     @Autowired
     private TodoTypeService todoTypeService;
 
     public TodoDTO create(TodoDTO todoDTO) {
-        String title = todoDTO.getTitle();
-        String description = todoDTO.getDescription();
         TodoStatus status = todoStatusService.get(TodoStatus.TO_DO);
         TodoType type = todoTypeService.get(todoDTO.getTypeId());
 
-        Todo todo = new Todo();
-        todo.setTitle(title);
-        todo.setDescription(description);
-        todo.setType(type);
-        todo.setStatus(status);
-        todo.setCreateDate(dateNow());
+        Todo todo = Todo.builder()
+                .title(todoDTO.getTitle())
+                .description(todoDTO.getDescription())
+                .type(type)
+                .status(status)
+                .createDate(dateNow())
+                .build();
 
         return TodoMapper.INSTANCE.toDTO(todoRepository.save(todo));
     }

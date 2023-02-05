@@ -7,31 +7,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
-import static org.springframework.util.ObjectUtils.isEmpty;
+import java.util.List;
 
 @RestController
-@RequestMapping("/todo-status")
+@RequestMapping("/api/todo-status")
 public class TodoStatusController {
-
     @Autowired
     private TodoStatusService todoStatusService;
 
-    @PutMapping("/save")
-    public TodoStatus save(@Valid @RequestBody TodoStatus todoStatus) {
-        if (isEmpty(todoStatus.getId())) {
-            return todoStatusService.create(todoStatus);
-        } else {
-            return todoStatusService.update(todoStatus);
-        }
+    @PostMapping
+    public TodoStatus create(@Valid @RequestBody TodoStatus todoStatus) {
+        return todoStatusService.create(todoStatus);
     }
 
-    @GetMapping("/get/{id}")
+    @PutMapping
+    public TodoStatus update(@Valid @RequestBody TodoStatus todoStatus) {
+        return todoStatusService.update(todoStatus);
+
+    }
+
+    @GetMapping("/{id}")
     public TodoStatus get(@PathVariable Long id) {
         return todoStatusService.get(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping
+    public List<TodoStatus> list() {
+        return todoStatusService.list();
+    }
+
+    @DeleteMapping("/{id}")
     public HttpStatus delete(@PathVariable Long id) {
         todoStatusService.delete(id);
         return HttpStatus.OK;

@@ -9,36 +9,34 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.springframework.util.ObjectUtils.isEmpty;
-
 @RestController
-@RequestMapping("/todo")
+@RequestMapping("/api/todo")
 public class TodoController {
-
     @Autowired
     private TodoService todoService;
 
-    @PutMapping("/save")
-    public TodoDTO save(@Valid @RequestBody TodoDTO todoDTO) {
-        if (isEmpty(todoDTO.getId())) {
-            return todoService.create(todoDTO);
-        } else {
-            return todoService.update(todoDTO);
-        }
+    @PostMapping
+    public TodoDTO create(@Valid @RequestBody TodoDTO todoDTO) {
+        return todoService.create(todoDTO);
     }
 
-    @PutMapping("/close/{id}")
+    @PutMapping
+    public TodoDTO update(@Valid @RequestBody TodoDTO todoDTO) {
+        return todoService.update(todoDTO);
+    }
+
+    @PutMapping("/{id}")
     public HttpStatus close(@PathVariable Long id) {
         todoService.close(id);
         return HttpStatus.OK;
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Todo get(@PathVariable Long id) {
         return todoService.get(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public HttpStatus delete(@PathVariable Long id) {
         todoService.delete(id);
         return HttpStatus.OK;
