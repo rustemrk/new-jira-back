@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/todo-type")
@@ -15,18 +15,23 @@ public class TodoTypeController {
     private TodoTypeService todoTypeService;
 
     @PostMapping
-    public TodoType create(@Valid @RequestBody TodoType todoType) {
+    public TodoType create(@RequestBody TodoType todoType) {
         return todoTypeService.create(todoType);
     }
 
     @PutMapping
-    public TodoType save(@Valid @RequestBody TodoType todoType) {
+    public TodoType save(@RequestBody TodoType todoType) {
         return todoTypeService.update(todoType);
     }
 
     @GetMapping("/{id}")
     public TodoType get(@PathVariable Long id) {
         return todoTypeService.get(id);
+    }
+
+    @GetMapping
+    public List<TodoType> list() {
+        return todoTypeService.list();
     }
 
     @DeleteMapping("/{id}")

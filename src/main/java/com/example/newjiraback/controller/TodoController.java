@@ -1,10 +1,12 @@
 package com.example.newjiraback.controller;
 
-import com.example.newjiraback.dto.TodoDTO;
-import com.example.newjiraback.model.Todo;
+import com.example.newjiraback.dto.todo.TodoCreateDTO;
+import com.example.newjiraback.dto.todo.TodoDTO;
+import com.example.newjiraback.dto.todo.TodoUpdateDTO;
 import com.example.newjiraback.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,29 +18,20 @@ public class TodoController {
     private TodoService todoService;
 
     @PostMapping
-    public TodoDTO create(@Valid @RequestBody TodoDTO todoDTO) {
-        return todoService.create(todoDTO);
+    public ResponseEntity<HttpStatus> create(@Valid @RequestBody TodoCreateDTO todoCreateDTO) throws Exception {
+        todoService.create(todoCreateDTO);
+        return ResponseEntity.ok().body(HttpStatus.OK);
     }
 
     @PutMapping
-    public TodoDTO update(@Valid @RequestBody TodoDTO todoDTO) {
-        return todoService.update(todoDTO);
-    }
-
-    @PutMapping("/{id}")
-    public HttpStatus close(@PathVariable Long id) {
-        todoService.close(id);
-        return HttpStatus.OK;
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody TodoUpdateDTO todoUpdateDTO) throws Exception {
+        todoService.update(todoUpdateDTO);
+        return ResponseEntity.ok().body(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Todo get(@PathVariable Long id) {
-        return todoService.get(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public HttpStatus delete(@PathVariable Long id) {
-        todoService.delete(id);
-        return HttpStatus.OK;
+    public ResponseEntity<TodoDTO> get(@PathVariable Long id) throws Exception {
+        TodoDTO todoDTO = todoService.get(id);
+        return ResponseEntity.ok().body(todoDTO);
     }
 }

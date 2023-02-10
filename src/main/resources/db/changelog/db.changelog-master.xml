@@ -7,5 +7,6 @@
 
     <include file="2022/08/cumulative.xml" relativeToChangelogFile="true"/>
     <include file="2022/09/cumulative.xml" relativeToChangelogFile="true"/>
+    <include file="2023/02/cumulative.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

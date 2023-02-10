@@ -1,16 +1,14 @@
 package com.example.newjiraback.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.OffsetDateTime;
 
-@Data
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,6 +17,7 @@ public class TodoType {
 
     public static final Long TASK = 1L;
     public static final Long BUG = 2L;
+    public static final Long HOTFIX = 3L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_todo_type")
@@ -35,5 +34,11 @@ public class TodoType {
 
     @Column(name = "create_date")
     private OffsetDateTime createDate;
+
+    @Column(name = "icon")
+    private String icon;
+
+    @Column(name = "color")
+    private String color;
 
 }

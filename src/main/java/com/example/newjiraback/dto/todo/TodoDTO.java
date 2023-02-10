@@ -1,4 +1,4 @@
-package com.example.newjiraback.dto;
+package com.example.newjiraback.dto.todo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

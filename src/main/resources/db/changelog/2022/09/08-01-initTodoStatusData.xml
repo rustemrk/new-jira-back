@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="loadTodoStatusData" author="rustem" context="test, prod" runOnChange="true">
+    <changeSet id="loadTodoStatusData" author="rustem" context="test, prod">
         <loadUpdateData
                 file="db/data/test/2022/09/08-todo_status.csv"
                 primaryKey="id"

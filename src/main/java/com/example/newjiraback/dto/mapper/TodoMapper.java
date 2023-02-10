@@ -1,6 +1,6 @@
 package com.example.newjiraback.dto.mapper;
 
-import com.example.newjiraback.dto.TodoDTO;
+import com.example.newjiraback.dto.todo.TodoDTO;
 import com.example.newjiraback.model.Todo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -8,7 +8,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface TodoMapper {
-
     TodoMapper INSTANCE = Mappers.getMapper(TodoMapper.class);
 
     @Mapping(source = "id", target = "id")
@@ -25,17 +24,4 @@ public interface TodoMapper {
     @Mapping(source = "status.isSystem", target = "statusIsSystem")
     TodoDTO toDTO(Todo todo);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "title", target = "title")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "typeId", target = "type.id")
-    @Mapping(source = "typeName", target = "type.name")
-    @Mapping(source = "typeIsSystem", target = "type.isSystem")
-    @Mapping(source = "createDate", target = "createDate")
-    @Mapping(source = "updateDate", target = "updateDate")
-    @Mapping(source = "closeDate", target = "closeDate")
-    @Mapping(source = "statusId", target = "status.id")
-    @Mapping(source = "statusName", target = "status.name")
-    @Mapping(source = "statusIsSystem", target = "status.isSystem")
-    Todo toEntity(TodoDTO todoDTO);
 }

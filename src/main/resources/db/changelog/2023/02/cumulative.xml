@@ -5,12 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="loadTodoTypeData" author="rustem" context="test, prod">
-        <loadUpdateData
-                file="db/data/test/2022/08/29-todo_type.csv"
-                primaryKey="id"
-                tableName="todo_type">
-        </loadUpdateData>
-    </changeSet>
+    <include file="09-01-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="09-02-changelog.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

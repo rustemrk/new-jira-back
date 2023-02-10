@@ -1,0 +1,4 @@
+id,name,is_system,icon,color
+1,Задача,true,mdi-checkbox-marked,blue
+2,Баг,true,mdi-bug,green
+3,Хотфикс,true,mdi-alert-box,red

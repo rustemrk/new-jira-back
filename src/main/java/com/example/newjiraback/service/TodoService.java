@@ -1,13 +1,14 @@
 package com.example.newjiraback.service;
 
-import com.example.newjiraback.dto.TodoDTO;
 import com.example.newjiraback.dto.mapper.TodoMapper;
+import com.example.newjiraback.dto.todo.TodoCreateDTO;
+import com.example.newjiraback.dto.todo.TodoDTO;
+import com.example.newjiraback.dto.todo.TodoUpdateDTO;
 import com.example.newjiraback.exception.TodoNotFoundException;
 import com.example.newjiraback.model.Todo;
 import com.example.newjiraback.model.TodoStatus;
 import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoRepository;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,38 +23,36 @@ public class TodoService {
     @Autowired
     private TodoTypeService todoTypeService;
 
-    public TodoDTO create(TodoDTO todoDTO) {
+    public void create(TodoCreateDTO todoCreateDTO) throws Exception {
         TodoStatus status = todoStatusService.get(TodoStatus.TO_DO);
-        TodoType type = todoTypeService.get(todoDTO.getTypeId());
+        TodoType type = todoTypeService.get(todoCreateDTO.getTypeId());
 
         Todo todo = Todo.builder()
-                .title(todoDTO.getTitle())
-                .description(todoDTO.getDescription())
+                .title(todoCreateDTO.getTitle())
+                .description(todoCreateDTO.getDescription())
                 .type(type)
                 .status(status)
                 .createDate(dateNow())
                 .build();
-
-        return TodoMapper.INSTANCE.toDTO(todoRepository.save(todo));
+        todoRepository.save(todo);
     }
 
-    @SneakyThrows
-    public Todo get(Long id) {
-        return todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
-    }
+    public void update(TodoUpdateDTO todoUpdateDTO) throws Exception {
+        Todo todo = todoRepository.findById(todoUpdateDTO.getId()).orElseThrow(TodoNotFoundException::new);
+        TodoType type = todoTypeService.get(todoUpdateDTO.getTypeId());
+        TodoStatus status = todoStatusService.get(todoUpdateDTO.getStatusId());
 
-    public TodoDTO update(TodoDTO todoDTO) {
-        Todo todo = TodoMapper.INSTANCE.toEntity(todoDTO);
+        todo.setTitle(todoUpdateDTO.getTitle());
+        todo.setDescription(todoUpdateDTO.getDescription());
+        todo.setType(type);
+        todo.setStatus(status);
         todo.setUpdateDate(dateNow());
-        return TodoMapper.INSTANCE.toDTO(todoRepository.save(todo));
+
+        todoRepository.save(todo);
     }
 
-    public void close(Long id) {
-        boolean isClosed = todoRepository.isClosed(id);
-        if (!isClosed) todoRepository.close(id, dateNow());
-    }
-
-    public void delete(Long id) {
-        todoRepository.deleteById(id);
+    public TodoDTO get(Long id) throws Exception {
+        Todo todo = todoRepository.findById(id).orElseThrow(TodoNotFoundException::new);
+        return TodoMapper.INSTANCE.toDTO(todo);
     }
 }

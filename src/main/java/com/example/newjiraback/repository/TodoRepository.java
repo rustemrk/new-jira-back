@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
@@ -21,4 +22,5 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     @Query("update Todo set closeDate = :dateNow where id = :id")
     void close(Long id, OffsetDateTime dateNow);
 
+    List<Todo> getTodosByStatus_Id(Long id);
 }
