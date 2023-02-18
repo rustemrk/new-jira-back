@@ -23,4 +23,8 @@ public class TodoCreateDTO {
     @NotNull(message = "Выберите тип задачи")
     @Min(value = 1, message = "Выберите тип задачи")
     private Long typeId;
+
+    @NotNull(message = "Выберите статус")
+    @Min(value = 1, message = "Выберите статус")
+    private Long statusId;
 }

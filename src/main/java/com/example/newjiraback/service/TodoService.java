@@ -24,7 +24,7 @@ public class TodoService {
     private TodoTypeService todoTypeService;
 
     public void create(TodoCreateDTO todoCreateDTO) throws Exception {
-        TodoStatus status = todoStatusService.get(TodoStatus.TO_DO);
+        TodoStatus status = todoStatusService.get(todoCreateDTO.getStatusId());
         TodoType type = todoTypeService.get(todoCreateDTO.getTypeId());
 
         Todo todo = Todo.builder()
