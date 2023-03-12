@@ -1,6 +1,7 @@
 package com.example.newjiraback.dto.mapper;
 
 import com.example.newjiraback.dto.todoStatus.TodoStatusDTO;
+import com.example.newjiraback.dto.todoStatus.TodoStatusWithTodosDTO;
 import com.example.newjiraback.model.TodoStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,4 +16,10 @@ public interface TodoStatusMapper {
     @Mapping(source = "isSystem", target = "isSystem")
     @Mapping(source = "createDate", target = "createDate")
     TodoStatusDTO toDTO(TodoStatus todoStatus);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "isSystem", target = "isSystem")
+    @Mapping(source = "createDate", target = "createDate")
+    TodoStatusWithTodosDTO toDTOWithTodos(TodoStatus todoStatus);
 }

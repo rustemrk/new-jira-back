@@ -28,7 +28,7 @@ public class TodoUpdateDTO {
     @Min(value = 1, message = "Выберите тип задачи")
     private Long typeId;
 
-    @NotNull(message = "Выберите статус задачи")
+    @NotNull
     @Min(value = 1, message = "Выберите статус задачи")
     private Long statusId;
 }

@@ -1,4 +1,4 @@
-package com.example.newjiraback.dto.todoStatus;
+package com.example.newjiraback.dto.TodoType;
 
 import lombok.*;
 
@@ -9,9 +9,11 @@ import java.time.OffsetDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TodoStatusDTO {
+public class TodoTypeDTO {
     private Long id;
     private String name;
     private Boolean isSystem;
     private OffsetDateTime createDate;
+    private String icon;
+    private String color;
 }

@@ -1,42 +1,44 @@
 package com.example.newjiraback.controller;
 
+import com.example.newjiraback.dto.TodoType.TodoTypeCreateDTO;
+import com.example.newjiraback.dto.TodoType.TodoTypeDTO;
+import com.example.newjiraback.dto.TodoType.TodoTypeUpdateDTO;
 import com.example.newjiraback.model.TodoType;
-import com.example.newjiraback.service.TodoTypeService;
+import com.example.newjiraback.service.TodoTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/todo-type")
+@RequestMapping("/api/v1/todo-type")
 public class TodoTypeController {
     @Autowired
-    private TodoTypeService todoTypeService;
+    private TodoTypeServiceImpl todoTypeServiceImpl;
 
     @PostMapping
-    public TodoType create(@RequestBody TodoType todoType) {
-        return todoTypeService.create(todoType);
+    public ResponseEntity<Long> create(@Valid @RequestBody TodoTypeCreateDTO todoTypeCreateDTO) {
+        Long id = todoTypeServiceImpl.create(todoTypeCreateDTO);
+        return ResponseEntity.ok().body(id);
     }
 
     @PutMapping
-    public TodoType save(@RequestBody TodoType todoType) {
-        return todoTypeService.update(todoType);
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody TodoTypeUpdateDTO todoTypeUpdateDTO) {
+        todoTypeServiceImpl.update(todoTypeUpdateDTO);
+        return ResponseEntity.ok().body(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public TodoType get(@PathVariable Long id) {
-        return todoTypeService.get(id);
+    public ResponseEntity<TodoType> get(@PathVariable Long id) {
+        TodoType todoType = todoTypeServiceImpl.get(id);
+        return ResponseEntity.ok().body(todoType);
     }
 
     @GetMapping
-    public List<TodoType> list() {
-        return todoTypeService.list();
-    }
-
-    @DeleteMapping("/{id}")
-    public HttpStatus delete(@PathVariable Long id) {
-        todoTypeService.delete(id);
-        return HttpStatus.OK;
+    public ResponseEntity<List<TodoTypeDTO>> getAll() {
+        return ResponseEntity.ok().body(todoTypeServiceImpl.getALL());
     }
 }

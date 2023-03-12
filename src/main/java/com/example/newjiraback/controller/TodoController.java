@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/todo")
+@RequestMapping("/api/v1/todo")
 public class TodoController {
     @Autowired
     private TodoService todoService;
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create(@Valid @RequestBody TodoCreateDTO todoCreateDTO) throws Exception {
-        todoService.create(todoCreateDTO);
-        return ResponseEntity.ok().body(HttpStatus.OK);
+    public ResponseEntity<Long> create(@Valid @RequestBody TodoCreateDTO todoCreateDTO) {
+        Long id = todoService.create(todoCreateDTO);
+        return ResponseEntity.ok().body(id);
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> update(@Valid @RequestBody TodoUpdateDTO todoUpdateDTO) throws Exception {
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody TodoUpdateDTO todoUpdateDTO) {
         todoService.update(todoUpdateDTO);
         return ResponseEntity.ok().body(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TodoDTO> get(@PathVariable Long id) throws Exception {
+    public ResponseEntity<TodoDTO> get(@PathVariable Long id) {
         TodoDTO todoDTO = todoService.get(id);
         return ResponseEntity.ok().body(todoDTO);
     }

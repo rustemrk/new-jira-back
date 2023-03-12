@@ -1,40 +1,18 @@
 package com.example.newjiraback.service;
 
+import com.example.newjiraback.dto.TodoType.TodoTypeCreateDTO;
+import com.example.newjiraback.dto.TodoType.TodoTypeDTO;
+import com.example.newjiraback.dto.TodoType.TodoTypeUpdateDTO;
 import com.example.newjiraback.model.TodoType;
-import com.example.newjiraback.repository.TodoTypeRepository;
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.newjiraback.util.DateUtil.dateNow;
+public interface TodoTypeService {
+    public Long create(TodoTypeCreateDTO todoTypeCreateDTO);
 
-@Service
-public class TodoTypeService {
+    public void update(TodoTypeUpdateDTO TodoTypeUpdateDTO);
 
-    @Autowired
-    private TodoTypeRepository todoTypeRepository;
+    public TodoType get(Long id);
 
-    public TodoType create(TodoType todoType) {
-        todoType.setCreateDate(dateNow());
-        return todoTypeRepository.save(todoType);
-    }
-
-    @SneakyThrows
-    public TodoType get(Long id) {
-        return todoTypeRepository.findById(id).orElse(null);
-    }
-
-    public TodoType update(TodoType todoType) {
-        return todoTypeRepository.save(todoType);
-    }
-
-    public void delete(Long id) {
-        todoTypeRepository.deleteById(id);
-    }
-
-    public List<TodoType> list() {
-        return todoTypeRepository.findAll();
-    }
+    public List<TodoTypeDTO> getALL();
 }
