@@ -18,6 +18,8 @@ public class TodoDTO {
     private Long typeId;
     private String typeName;
     private Boolean typeIsSystem;
+    private String typeIcon;
+    private String typeColor;
     private OffsetDateTime createDate;
     private OffsetDateTime updateDate;
     private OffsetDateTime closeDate;

@@ -1,4 +1,4 @@
-package com.example.newjiraback.service;
+package com.example.newjiraback.service.impl;
 
 import com.example.newjiraback.dto.TodoType.TodoTypeCreateDTO;
 import com.example.newjiraback.dto.TodoType.TodoTypeDTO;
@@ -7,6 +7,7 @@ import com.example.newjiraback.dto.mapper.TodoTypeMapper;
 import com.example.newjiraback.exception.ResourceNotFoundException;
 import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoTypeRepository;
+import com.example.newjiraback.service.TodoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

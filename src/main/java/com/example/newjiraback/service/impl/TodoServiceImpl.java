@@ -1,4 +1,4 @@
-package com.example.newjiraback.service;
+package com.example.newjiraback.service.impl;
 
 import com.example.newjiraback.dto.mapper.TodoMapper;
 import com.example.newjiraback.dto.todo.TodoCreateDTO;
@@ -9,6 +9,9 @@ import com.example.newjiraback.model.Todo;
 import com.example.newjiraback.model.TodoStatus;
 import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoRepository;
+import com.example.newjiraback.service.TodoService;
+import com.example.newjiraback.service.TodoStatusService;
+import com.example.newjiraback.service.TodoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +22,14 @@ public class TodoServiceImpl implements TodoService {
     @Autowired
     private TodoRepository todoRepository;
     @Autowired
-    private TodoStatusServiceImpl todoStatusServiceImpl;
+    private TodoStatusService todoStatusService;
     @Autowired
-    private TodoTypeServiceImpl todoTypeServiceImpl;
+    private TodoTypeService todoTypeService;
 
     @Override
     public Long create(TodoCreateDTO todoCreateDTO) {
-        TodoStatus status = todoStatusServiceImpl.get(todoCreateDTO.getStatusId());
-        TodoType type = todoTypeServiceImpl.get(todoCreateDTO.getTypeId());
+        TodoStatus status = todoStatusService.get(todoCreateDTO.getStatusId());
+        TodoType type = todoTypeService.get(todoCreateDTO.getTypeId());
 
         Todo todo = Todo.builder()
                 .title(todoCreateDTO.getTitle())
@@ -41,8 +44,8 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void update(TodoUpdateDTO todoUpdateDTO) {
         Todo todo = todoRepository.findById(todoUpdateDTO.getId()).orElseThrow(ResourceNotFoundException::new);
-        TodoType type = todoTypeServiceImpl.get(todoUpdateDTO.getTypeId());
-        TodoStatus status = todoStatusServiceImpl.get(todoUpdateDTO.getStatusId());
+        TodoType type = todoTypeService.get(todoUpdateDTO.getTypeId());
+        TodoStatus status = todoStatusService.get(todoUpdateDTO.getStatusId());
 
         todo.setTitle(todoUpdateDTO.getTitle());
         todo.setDescription(todoUpdateDTO.getDescription());

@@ -1,6 +1,6 @@
 package com.example.newjiraback.dto.todoStatus;
 
-import com.example.newjiraback.model.Todo;
+import com.example.newjiraback.dto.todo.TodoDTO;
 import lombok.*;
 
 import java.time.OffsetDateTime;
@@ -16,5 +16,5 @@ public class TodoStatusWithTodosDTO {
     private String name;
     private Boolean isSystem;
     private OffsetDateTime createDate;
-    private List<Todo> todos;
+    private List<TodoDTO> todos;
 }

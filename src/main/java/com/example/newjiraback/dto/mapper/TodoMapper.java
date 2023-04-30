@@ -16,6 +16,8 @@ public interface TodoMapper {
     @Mapping(source = "type.id", target = "typeId")
     @Mapping(source = "type.name", target = "typeName")
     @Mapping(source = "type.isSystem", target = "typeIsSystem")
+    @Mapping(source = "type.icon", target = "typeIcon")
+    @Mapping(source = "type.color", target = "typeColor")
     @Mapping(source = "createDate", target = "createDate")
     @Mapping(source = "updateDate", target = "updateDate")
     @Mapping(source = "closeDate", target = "closeDate")

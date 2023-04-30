@@ -1,15 +1,17 @@
-package com.example.newjiraback.service;
+package com.example.newjiraback.service.impl;
 
+import com.example.newjiraback.dto.mapper.TodoMapper;
 import com.example.newjiraback.dto.mapper.TodoStatusMapper;
+import com.example.newjiraback.dto.todo.TodoDTO;
 import com.example.newjiraback.dto.todoStatus.TodoStatusCreateDTO;
 import com.example.newjiraback.dto.todoStatus.TodoStatusDTO;
 import com.example.newjiraback.dto.todoStatus.TodoStatusUpdateDTO;
 import com.example.newjiraback.dto.todoStatus.TodoStatusWithTodosDTO;
 import com.example.newjiraback.exception.ResourceNotFoundException;
-import com.example.newjiraback.model.Todo;
 import com.example.newjiraback.model.TodoStatus;
 import com.example.newjiraback.repository.TodoRepository;
 import com.example.newjiraback.repository.TodoStatusRepository;
+import com.example.newjiraback.service.TodoStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,9 +67,12 @@ public class TodoStatusServiceImpl implements TodoStatusService {
         List<TodoStatusWithTodosDTO> statusWithTodosDTOList = new ArrayList<>();
 
         for (TodoStatus todoStatus : todoStatuses) {
-            List<Todo> todos = todoRepository.getTodosByStatus_Id(todoStatus.getId());
+            List<TodoDTO> todoDTOS = todoRepository.getTodosByStatus_Id(todoStatus.getId())
+                    .stream()
+                    .map(TodoMapper.INSTANCE::toDTO)
+                    .toList();
             TodoStatusWithTodosDTO statusWithTodosDTO = TodoStatusMapper.INSTANCE.toDTOWithTodos(todoStatus);
-            statusWithTodosDTO.setTodos(todos);
+            statusWithTodosDTO.setTodos(todoDTOS);
             statusWithTodosDTOList.add(statusWithTodosDTO);
         }
 
