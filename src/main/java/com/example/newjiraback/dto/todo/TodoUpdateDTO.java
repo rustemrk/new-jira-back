@@ -21,7 +21,6 @@ public class TodoUpdateDTO {
     @NotBlank(message = "Заполните заголовок задачи")
     private String title;
 
-    @NotNull
     private String description;
 
     @NotNull
