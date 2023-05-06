@@ -67,7 +67,7 @@ public class TodoStatusServiceImpl implements TodoStatusService {
         List<TodoStatusWithTodosDTO> statusWithTodosDTOList = new ArrayList<>();
 
         for (TodoStatus todoStatus : todoStatuses) {
-            List<TodoDTO> todoDTOS = todoRepository.getTodosByStatus_Id(todoStatus.getId())
+            List<TodoDTO> todoDTOS = todoRepository.getTodosByStatusIdOrderByKanbanOrder(todoStatus.getId())
                     .stream()
                     .map(TodoMapper.INSTANCE::toDTO)
                     .toList();

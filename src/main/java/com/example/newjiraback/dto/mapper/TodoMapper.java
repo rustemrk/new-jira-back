@@ -24,6 +24,7 @@ public interface TodoMapper {
     @Mapping(source = "status.id", target = "statusId")
     @Mapping(source = "status.name", target = "statusName")
     @Mapping(source = "status.isSystem", target = "statusIsSystem")
+    @Mapping(source = "kanbanOrder", target = "kanbanOrder")
     TodoDTO toDTO(Todo todo);
 
 }

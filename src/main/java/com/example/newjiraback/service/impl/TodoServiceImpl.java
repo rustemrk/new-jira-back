@@ -3,6 +3,7 @@ package com.example.newjiraback.service.impl;
 import com.example.newjiraback.dto.mapper.TodoMapper;
 import com.example.newjiraback.dto.todo.TodoCreateDTO;
 import com.example.newjiraback.dto.todo.TodoDTO;
+import com.example.newjiraback.dto.todo.TodoKanbanOrderDTO;
 import com.example.newjiraback.dto.todo.TodoUpdateDTO;
 import com.example.newjiraback.exception.ResourceNotFoundException;
 import com.example.newjiraback.model.Todo;
@@ -14,6 +15,8 @@ import com.example.newjiraback.service.TodoStatusService;
 import com.example.newjiraback.service.TodoTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.example.newjiraback.util.DateUtil.dateNow;
 
@@ -60,5 +63,16 @@ public class TodoServiceImpl implements TodoService {
     public TodoDTO get(Long id) {
         Todo todo = todoRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return TodoMapper.INSTANCE.toDTO(todo);
+    }
+
+    @Override
+    public void saveKanbanOrder(List<TodoKanbanOrderDTO> kanbanOrderDTOList) {
+        kanbanOrderDTOList.forEach(element -> {
+            long todoId = element.getTodoId();
+            long statusId = element.getStatusId();
+            long kanbanOrder = element.getKanbanOrder() + 1;
+
+            todoRepository.saveKanbanOrder(todoId, statusId, kanbanOrder);
+        });
     }
 }

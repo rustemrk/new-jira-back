@@ -47,4 +47,7 @@ public class Todo {
     @JoinColumn(name = "status", nullable = false)
     private TodoStatus status;
 
+    @Column(name = "kanban_order")
+    private Long kanbanOrder;
+
 }

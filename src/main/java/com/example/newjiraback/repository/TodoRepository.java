@@ -22,5 +22,14 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     @Query("update Todo set closeDate = :dateNow where id = :id")
     void close(Long id, OffsetDateTime dateNow);
 
-    List<Todo> getTodosByStatus_Id(Long id);
+
+    @Query(value = "select * from Todo where status = :statusId order by kanban_order nulls first", nativeQuery = true)
+    List<Todo> getTodosByStatusIdOrderByKanbanOrder(Long statusId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update Todo set status = :statusId, kanban_order = :kanbanOrder where id = :todoId", nativeQuery = true)
+    void saveKanbanOrder(long todoId, long statusId, long kanbanOrder);
+
+    List<Todo> getTodosByStatus_Id(Long statusId);
 }

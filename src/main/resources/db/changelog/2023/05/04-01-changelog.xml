@@ -5,9 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <include file="2022/08/cumulative.xml" relativeToChangelogFile="true"/>
-    <include file="2022/09/cumulative.xml" relativeToChangelogFile="true"/>
-    <include file="2023/02/cumulative.xml" relativeToChangelogFile="true"/>
-    <include file="2023/05/cumulative.xml" relativeToChangelogFile="true"/>
+    <changeSet id="updateTableTodo" author="Rustem" context="test, prod">
+        <addColumn tableName="todo">
+            <column name="kanban_order" type="bigint"/>
+        </addColumn>
+    </changeSet>
+
 
 </databaseChangeLog>

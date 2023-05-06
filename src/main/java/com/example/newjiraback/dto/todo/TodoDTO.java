@@ -26,4 +26,5 @@ public class TodoDTO {
     private Long statusId;
     private String statusName;
     private Boolean statusIsSystem;
+    private Long kanbanOrder;
 }

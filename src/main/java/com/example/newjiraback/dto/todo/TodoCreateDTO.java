@@ -27,4 +27,7 @@ public class TodoCreateDTO {
     @NotNull(message = "Выберите статус")
     @Min(value = 1, message = "Выберите статус")
     private Long statusId;
+
+    @NotNull
+    private Long kanbanOrder;
 }

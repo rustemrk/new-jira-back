@@ -30,4 +30,7 @@ public class TodoUpdateDTO {
     @NotNull
     @Min(value = 1, message = "Выберите статус задачи")
     private Long statusId;
+
+    @NotNull
+    private Long kanbanOrder;
 }
