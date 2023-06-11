@@ -12,13 +12,12 @@ import com.example.newjiraback.model.TodoStatus;
 import com.example.newjiraback.repository.TodoRepository;
 import com.example.newjiraback.repository.TodoStatusRepository;
 import com.example.newjiraback.service.TodoStatusService;
+import com.example.newjiraback.util.UtDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.newjiraback.util.DateUtil.dateNow;
 
 @Service
 public class TodoStatusServiceImpl implements TodoStatusService {
@@ -31,7 +30,7 @@ public class TodoStatusServiceImpl implements TodoStatusService {
     public Long create(TodoStatusCreateDTO todoStatusCreateDTO) {
         TodoStatus todoStatus = TodoStatus.builder()
                 .name(todoStatusCreateDTO.getName())
-                .createDate(dateNow())
+                .createDate(UtDate.dateNow())
                 .isSystem(false)
                 .build();
         return todoStatusRepository.save(todoStatus).getId();
@@ -54,9 +53,9 @@ public class TodoStatusServiceImpl implements TodoStatusService {
         List<TodoStatus> todoStatusList = todoStatusRepository.findAll();
         List<TodoStatusDTO> todoStatusDTOList = new ArrayList<>();
 
-        for (TodoStatus status : todoStatusList) {
-            todoStatusDTOList.add(TodoStatusMapper.INSTANCE.toDTO(status));
-        }
+        todoStatusList.stream()
+                .map(TodoStatusMapper.INSTANCE::toDTO)
+                .forEach(todoStatusDTOList::add);
 
         return todoStatusDTOList;
     }
@@ -64,18 +63,18 @@ public class TodoStatusServiceImpl implements TodoStatusService {
     @Override
     public List<TodoStatusWithTodosDTO> getAllWithTodos() {
         List<TodoStatus> todoStatuses = todoStatusRepository.findAll();
-        List<TodoStatusWithTodosDTO> statusWithTodosDTOList = new ArrayList<>();
+        List<TodoStatusWithTodosDTO> statusWithTodoDTOsList = new ArrayList<>();
 
         for (TodoStatus todoStatus : todoStatuses) {
-            List<TodoDTO> todoDTOS = todoRepository.getTodosByStatusIdOrderByKanbanOrder(todoStatus.getId())
+            List<TodoDTO> todoDTOS = todoRepository.getTodosByStatusId(todoStatus.getId())
                     .stream()
                     .map(TodoMapper.INSTANCE::toDTO)
                     .toList();
             TodoStatusWithTodosDTO statusWithTodosDTO = TodoStatusMapper.INSTANCE.toDTOWithTodos(todoStatus);
             statusWithTodosDTO.setTodos(todoDTOS);
-            statusWithTodosDTOList.add(statusWithTodosDTO);
+            statusWithTodoDTOsList.add(statusWithTodosDTO);
         }
 
-        return statusWithTodosDTOList;
+        return statusWithTodoDTOsList;
     }
 }

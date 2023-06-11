@@ -8,13 +8,12 @@ import com.example.newjiraback.exception.ResourceNotFoundException;
 import com.example.newjiraback.model.TodoType;
 import com.example.newjiraback.repository.TodoTypeRepository;
 import com.example.newjiraback.service.TodoTypeService;
+import com.example.newjiraback.util.UtDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.newjiraback.util.DateUtil.dateNow;
 
 @Service
 public class TodoTypeServiceImpl implements TodoTypeService {
@@ -27,7 +26,7 @@ public class TodoTypeServiceImpl implements TodoTypeService {
         TodoType todoType = TodoType.builder()
                 .name(todoTypeCreateDTO.getName())
                 .isSystem(false)
-                .createDate(dateNow())
+                .createDate(UtDate.dateNow())
                 .icon(todoTypeCreateDTO.getIcon())
                 .color(todoTypeCreateDTO.getColor())
                 .build();

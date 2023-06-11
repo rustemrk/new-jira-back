@@ -13,6 +13,7 @@ public class TodoKanbanOrderDTO {
 
     @NotNull
     private Long todoId;
+
     @NotNull
     private Long statusId;
 

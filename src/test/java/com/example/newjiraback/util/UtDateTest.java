@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
 
-class DateUtilTest {
+class UtDateTest {
 
     @Test
     void dateNow() {
         OffsetDateTime dateTime = OffsetDateTime.now();
-        OffsetDateTime dateNow = DateUtil.dateNow();
+        OffsetDateTime dateNow = UtDate.dateNow();
 
         Assertions.assertEquals(dateTime.getDayOfMonth(), dateNow.getDayOfMonth());
         Assertions.assertEquals(dateTime.getMonth(), dateNow.getMonth());
